@@ -1,0 +1,90 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "muon",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#support"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.storage.muon",
+					"match": "\\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal)\\b"
+				},
+				{
+					"name": "keyword.structure.muon",
+					"match": "\\b(struct|enum)\\b"
+				},
+				{
+					"name": "keyword.statement.muon",
+					"match": "\\b(break|return|continue|asm|defer|errdefer|unreachable|try|catch|async|await|suspend|resume|cancel)\\b"
+				},
+				{
+					"name": "keyword.conditional.muon",
+					"match": "\\b(if|else|match|and|or|orelse)\\b"
+				},
+				{
+					"name": "keyword.repeat.muon",
+					"match": "\\b(while|for)\\b"
+				},
+				{
+					"name": "keyword.constant.default.muon",
+					"match": "\\b(null|undefined)\\b"
+				},
+				{
+					"name": "keyword.constant.bool.muon",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "keyword.default.muon",
+					"match": "\\b(fn|use|test)\\b"
+				},
+				{
+					"name": "keyword.type.muon",
+					"match": "\\b(bool|void|noreturn|type|error|anyerror|promise)\\b"
+				},
+				{
+					"name": "keyword.type.integer.muon",
+					"match": "\\b(f16|f32|f64|f128|u\\d+|i\\d+|isize|usize|comptime_int|comptime_float)\\b"
+				},
+				{
+					"name": "keyword.type.c.muon",
+					"match": "\\b(cstring|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b"
+				},
+				{
+					"name": "keyword.todo.muon",
+					"match": "\\b(TODO,XXX)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.muon",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.muon",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.mu"
+}

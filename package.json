@@ -1,0 +1,25 @@
+{
+    "name": "vscode-muon",
+    "displayName": "vscode-muon",
+    "description": "Muon language support for VSCode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.33.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "muon",
+            "aliases": ["muon", "muon"],
+            "extensions": [".mu"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "muon",
+            "scopeName": "source.mu",
+            "path": "./syntaxes/muon.tmLanguage.json"
+        }]
+    }
+}
