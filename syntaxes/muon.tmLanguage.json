@@ -15,30 +15,29 @@
 			"include": "#operators"
 		},
 		{
+			"include": "function-call"
+		},
+		{
 			"include": "#numbers"
 		},
 		{
-			"include": "#support"
+			"include": "#punctuation"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [
 				{
-					"name": "keyword.storage.muon",
-					"match": "\\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal)\\b"
-				},
-				{
 					"name": "keyword.structure.muon",
-					"match": "\\b(struct|enum)\\b"
+					"match": "\\b(struct|enum|tagged_pointer)\\b"
 				},
 				{
 					"name": "keyword.statement.muon",
-					"match": "\\b(break|return|continue|asm|defer|errdefer|unreachable|try|catch|async|await|suspend|resume|cancel)\\b"
+					"match": "\\b(break|return|continue)\\b"
 				},
 				{
 					"name": "keyword.conditional.muon",
-					"match": "\\b(if|else|match|and|or|orelse)\\b"
+					"match": "\\b(if|else|match|and|or)\\b"
 				},
 				{
 					"name": "keyword.repeat.muon",
@@ -46,44 +45,156 @@
 				},
 				{
 					"name": "keyword.constant.default.muon",
-					"match": "\\b(null|undefined)\\b"
+					"match": "\\b(null)\\b"
 				},
 				{
 					"name": "keyword.constant.bool.muon",
 					"match": "\\b(true|false)\\b"
 				},
 				{
-					"name": "keyword.default.muon",
-					"match": "\\b(fn|use|test)\\b"
+					"name": "keyword.control.muon",
+					"match": "\\b(new)\\b"
 				},
 				{
 					"name": "keyword.type.muon",
-					"match": "\\b(bool|void|noreturn|type|error|anyerror|promise)\\b"
+					"match": "\\b(bool|bool32|void|pointer|fun|string)\\b"
 				},
 				{
 					"name": "keyword.type.integer.muon",
-					"match": "\\b(f16|f32|f64|f128|u\\d+|i\\d+|isize|usize|comptime_int|comptime_float)\\b"
+					"match": "\\b(sbyte|byte|short|ushort|u\\d+|i\\d+|int|uint|long|ulong|ssize|usize|float|double|char)\\b"
+				},
+				{
+					"name": "meta.attribute.muon",
+					"begin": "#\\!?",
+					"end": "",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
 				},
 				{
 					"name": "keyword.type.c.muon",
-					"match": "\\b(cstring|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b"
+					"match": "\\b(cstring)\\b"
+				}
+			]
+		},
+		"operators": {
+			"patterns":[
+				{
+					"name": "keyword.operator.logic.muon",
+					"match": "(==|<(?!<)|<=|>(?!>)|>=|\\&\\&|\\|\\||\\:(?!=)|\\?)"
 				},
 				{
-					"name": "keyword.todo.muon",
-					"match": "\\b(TODO,XXX)\\b"
+					"name": "keyword.operator.arithmetic.muon",
+					"match": "(-%?|\\+%?|\\*%?|/|%)=?"
+				},
+				{
+					"name": "keyword.operator.bitwise.muon",
+					"match": "(!|&|\\^|\\|)=?"
+				},
+				{
+					"name": "keyword.operator.assignment.muon",
+					"match": "(:=)"
+				},
+				{
+					"name": "keyword.operator.special.muon",
+					"match": "(==|\\+\\+|\\*\\*)"
+				}
+			]
+			},
+		"comments": {
+			"patterns":[
+				{
+				"name": "comment.line.documentation.muon",
+				"begin": "//[!/](?=[^/])",
+				"end": "$"
+				},
+				{
+				"name": "comment.line.double-slash.muon",
+				"begin": "//",
+				"end": "$"
 				}
 			]
 		},
 		"strings": {
-			"name": "string.quoted.double.muon",
-			"begin": "\"",
-			"end": "\"",
+			"patterns": [
+				{
+					"name": "string.quoted.double.muon",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.muon",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.muon",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "constant.character.escape.muon",
+							"match": "\\\\."
+						}
+					]
+				}
+			]
+		},
+		"stringcontent": {
 			"patterns": [
 				{
 					"name": "constant.character.escape.muon",
+					"match": "\\\\([nrt'\"\\\\]|(x[0-9a-fA-F]{2})|(u[0-9a-fA-F]{4})|(U[0-9a-fA-F]{6}))"
+				},
+				{
+					"name": "invalid.illegal.unrecognized-string-escape.muon",
 					"match": "\\\\."
+
 				}
 			]
+		},
+		"function-call": {
+            "match": "\\b([A-Za-z_]\\w*)\\s*\\(",
+            "captures": {
+                "1": {
+                    "name": "entity.name.function.muon"
+                }
+            }
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.float.muon",
+					"match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?[eE][+-]?[0-9_]+?\\b"
+				},
+				{
+					"name": "constant.numeric.float.muon",
+					"match": "\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?([eE][+-]?[0-9_]+)?\\b"
+				},
+				{
+					"name": "constant.numeric.decimal.muon",
+					"match": "\\b[0-9][0-9_]*\\b"
+				},
+				{
+					"name": "constant.numeric.hexadecimal.muon",
+					"match": "\\b0x[a-fA-F0-9_]+\\b"
+				}
+			]
+		},
+		"punctuation": {
+            "patterns": [
+                {
+                    "match": "\\.",
+                    "name": "punctuation.accessor.solidity"
+                },
+                {
+                    "match": ",",
+                    "name": "punctuation.separator.solidity"
+                }
+            ]
 		}
 	},
 	"scopeName": "source.mu"
