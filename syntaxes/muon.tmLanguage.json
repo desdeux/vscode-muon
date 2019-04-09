@@ -44,7 +44,7 @@
 					"match": "\\b(while|for)\\b"
 				},
 				{
-					"name": "keyword.constant.default.muon",
+					"name": "constant.language.muon",
 					"match": "\\b(null)\\b"
 				},
 				{
