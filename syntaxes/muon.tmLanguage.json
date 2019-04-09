@@ -37,7 +37,7 @@
 				},
 				{
 					"name": "keyword.conditional.muon",
-					"match": "\\b(if|else|match|and|or)\\b"
+					"match": "\\b(if|else|match|and|or|in)\\b"
 				},
 				{
 					"name": "keyword.repeat.muon",
@@ -56,11 +56,11 @@
 					"match": "\\b(new)\\b"
 				},
 				{
-					"name": "keyword.type.muon",
+					"name": "storage.type.muon",
 					"match": "\\b(bool|bool32|void|pointer|fun|string)\\b"
 				},
 				{
-					"name": "keyword.type.integer.muon",
+					"name": "storage.type.integer.muon",
 					"match": "\\b(sbyte|byte|short|ushort|u\\d+|i\\d+|int|uint|long|ulong|ssize|usize|float|double|char)\\b"
 				},
 				{
@@ -74,7 +74,7 @@
 					]
 				},
 				{
-					"name": "keyword.type.c.muon",
+					"name": "storage.type.c.muon",
 					"match": "\\b(cstring)\\b"
 				}
 			]
