@@ -53,7 +53,7 @@
 				},
 				{
 					"name": "keyword.control.muon",
-					"match": "\\b(new)\\b"
+					"match": "\\b(new|\\:\\:currentAllocator)\\b"
 				},
 				{
 					"name": "storage.type.muon",
